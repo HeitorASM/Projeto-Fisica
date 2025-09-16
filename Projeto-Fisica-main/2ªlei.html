@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Física - Segunda Lei de Newton</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<style>
+/* Variáveis CSS para consistência */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #e74c3c;
+    --dark-color: #2c3e50;
+    --light-color: #ecf0f1;
+    --text-color: #333;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+}
+
+/* Reset e estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f9f9f9;
+}
+
+/* Header - CORREÇÕES APLICADAS */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+    color: white;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.header-title i {
+    font-size: 2rem;
+}
+
+/* NOVO ESTILO PARA O LINK DO HUB */
+.hub-link {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s ease;
+}
+
+.hub-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hub-link i {
+    margin-right: 0.5rem;
+}
+
+.date-time {
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+/* Restante do CSS permanece igual */
+.divider {
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+    margin: 1.5rem 0;
+}
+
+/* Responsividade - ATUALIZADA */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem; /* Aumentei o gap para melhor espaçamento */
+        padding: 1rem;
+    }
+    
+    .date-time {
+        text-align: center;
+        order: 3; /* Coloca o date-time por último */
+        width: 100%;
+    }
+    
+    .hub-link {
+        order: 2; /* Coloca o hub link no meio */
+        margin: 0.5rem 0;
+    }
+    
+    .options-row {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .img-exemplo {
+        flex-direction: column;
+    }
+    
+    .examples-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-title h1 {
+        font-size: 1.5rem;
+    }
+    
+    .info-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .animation-container {
+        height: 120px;
+    }
+    
+    .hub-link {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+</style>
+<body>
+    <header>
+    <div class="header-title">
+        <i class="fas fa-calculator"></i>
+        <h1>Calculadora Física - Segunda Lei de Newton</h1>
+    </div>
+    <div>
+        <a href="hub.html" class="hub-link">
+            <i class="fas fa-home"></i>hub
+        </a>
+    </div>
+    <div class="date-time">
+        <span id="current-date"></span>
+        <span id="current-time"></span>
+    </div>
+</header>
+    <div class="divider"></div>
+    
+    <main class="container">
+        <section class="info-section">
+            <div class="info-card">
+                <h2>Segunda Lei de Newton</h2>
+                <p>A Segunda Lei de Newton, ou Princípio Fundamental da Dinâmica, estabelece que a força resultante aplicada sobre um corpo é igual ao produto de sua massa pela aceleração: <strong>F = m × a</strong>.</p>
+                <div class="formula">
+                    F = m × a
+                </div>
+                <p>Onde:<br>
+                F = Força resultante (N ou dinas)<br>
+                m = Massa (kg ou g)<br>
+                a = Aceleração (m/s² ou cm/s²)</p>
+                <div class="img-exemplo">
+                    <img src="assets/562ad2ed53d05-segunda-lei-de-newton.webp" alt="Representação da Segunda Lei de Newton">
+                    <img src="assets/5db8dce2-caixa-empurrada-aceleracao-meio.jpg" alt="Exemplo de aplicação da força">
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2>Como usar a calculadora?</h2>
+                
+                <ol class="instructions">
+                    <li>Selecione o que deseja calcular (Força, Massa ou Aceleração)</li>
+                    <li>Preencha os campos disponíveis com os valores conhecidos</li>
+                    <li>Ative o atrito se necessário e preencha os campos extras</li>
+                    <li>Selecione a unidade de medida desejada</li>
+                    <li>Clique em "Calcular" para obter o resultado</li>
+                </ol>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+        
+        <!-- Exemplos práticos -->
+        <section class="examples-section">
+            <h2>Exemplos Práticos</h2>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h3>Carro acelerando</h3>
+                    <p>Um carro de 1000 kg acelera a 2 m/s². Qual a força necessária?</p>
+                    <button class="example-btn" data-mass="1000" data-acceleration="2">Calcular exemplo</button>
+                </div>
+                <div class="example-card">
+                    <h3>Empurrando uma caixa</h3>
+                    <p>Uma caixa de 50 kg é empurrada com força de 100 N. Qual sua aceleração?</p>
+                    <button class="example-btn" data-mass="50" data-force="100">Calcular exemplo</button>
+                </div>
+                <div class="example-card">
+                    <h3>Bloco com atrito</h3>
+                    <p>Um bloco de 10 kg com μ=0.2 sofre ação de força normal de 98 N. Qual força para a=1 m/s²?</p>
+                    <button class="example-btn" data-mass="10" data-acceleration="1" data-friction="0.2" data-normal="98">Calcular exemplo</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+        
+        <!-- Opções de configuração -->
+        <div class="options-row">
+            <div class="option-group">
+                <p>Atrito on/off</p>
+                <label class="switch">
+                    <input type="checkbox" id="friction-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <div class="option-group">
+                <p>Unidade de medida</p>
+                <select id="unit-select">
+                    <option value="si">SI (N, kg, m/s²)</option>
+                    <option value="cgs">CGS (dina, g, cm/s²)</option>
+                </select>
+            </div>
+            
+            <div class="option-group">
+                <p>Partículas de atrito</p>
+                <label class="switch">
+                    <input type="checkbox" id="particles-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+        
+        <!-- Seletor do que calcular -->
+        <div class="input-group">
+            <label>O que deseja calcular?</label>
+            <select id="calculate-what">
+                <option value="force">Força (F)</option>
+                <option value="mass">Massa (m)</option>
+                <option value="acceleration">Aceleração (a)</option>
+            </select>
+        </div>
+        
+        <!-- Campos de entrada -->
+        <div class="input-group" id="mass-input">
+            <label for="mass">Massa (m)</label>
+            <input type="number" id="mass" placeholder="Digite a massa" min="0">
+            <span class="unit-label" id="mass-unit">kg</span>
+        </div>
+        
+        <div class="input-group" id="acceleration-input">
+            <label for="acceleration">Aceleração (a)</label>
+            <input type="number" id="acceleration" placeholder="Digite a aceleração" min="0">
+            <span class="unit-label" id="acceleration-unit">m/s²</span>
+        </div>
+        
+        <div class="input-group" id="force-input">
+            <label for="force">Força (F)</label>
+            <input type="number" id="force" placeholder="Digite a força" min="0">
+            <span class="unit-label" id="force-unit">N</span>
+        </div>
+        
+        <!-- Campos de atrito (inicialmente ocultos) -->
+        <div class="input-group friction-input" style="display: none;">
+            <label for="friction-coefficient">Coeficiente de Atrito (μ)</label>
+            <input type="number" id="friction-coefficient" placeholder="Digite o coeficiente de atrito" step="0.01" min="0" max="1">
+        </div>
+        
+        <div class="input-group friction-input" style="display: none;">
+            <label for="normal-force">Força Normal (N)</label>
+            <input type="number" id="normal-force" placeholder="Digite a força normal" min="0">
+            <span class="unit-label" id="normal-force-unit">N</span>
+        </div>
+        
+        <!-- Botão de cálculo -->
+        <button class="calculate-btn" id="calculate-button">Calcular</button>
+        
+        <!-- Resultado -->
+        <div class="result" id="result" style="display: none;">
+            <h3>Resultado:</h3>
+            <p id="result-value"></p>
+            <p id="calculation-details"></p>
+        </div>
+        
+        <!-- Animação -->
+        <div class="animation-container">
+            <div class="animation-box" id="animation-box">
+                <div class="object"></div>
+            </div>
+            <div class="animation-controls">
+                <button id="restart-animation">Repetir Animação</button>
+            </div>
+        </div>
+        
+        <!-- Gráfico de forças -->
+        <div class="chart-container">
+            <canvas id="force-chart"></canvas>
+        </div>
+        
+        <!-- Histórico de cálculos -->
+        <div class="history-section">
+            <h3>Histórico de Cálculos</h3>
+            <div id="calculation-history"></div>
+        </div>
+    </main>
+
+    <script src="js/general.js"></script>
+    <script src="js/calculations.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
